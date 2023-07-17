@@ -1,64 +1,23 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import * as React from "react";
+import Navbar from "./components/Navbar";
 
-/* HOOK REACT EXAMPLE */
-const App = (props: AppProps) => {
-	const [greeting, setGreeting] = useState<string>('');
+const App = () => {
+    return (
+        <>
+            <Navbar />
+            <main className="mt-5">
+                <h1 className="text-center text-5xl text-blue-700 dark:text-blue-300">Hello world!</h1>
 
-	useEffect(() => {
-		async function getGreeting() {
-			try {
-				const res = await fetch('/api/hello');
-				const greeting = await res.json();
-				setGreeting(greeting);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getGreeting();
-	}, []);
+                <div className="flex justify-center">
+                    <button className="p-2 m-3 shadow-xl rounded-md bg-green-600 text-green-200 hover:bg-green-500 hover:text-green-100 dark:bg-green-800 dark:text-green-500 dark:hover:bg-green-700 dark:hover:text-green-400">
+                        Inline classes
+                    </button>
 
-	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Hello {greeting}!</h1>
-		</main>
-	);
+                    <button className="btn btn-success">Classes with @apply directives</button>
+                </div>
+            </main>
+        </>
+    );
 };
-
-interface AppProps {}
-
-/* CLASS REACT EXAMPLE */
-// class App extends React.Component<IAppProps, IAppState> {
-// 	constructor(props: IAppProps) {
-// 		super(props);
-// 		this.state = {
-// 			name: null
-// 		};
-// 	}
-
-// 	async componentDidMount() {
-// 		try {
-// 			let r = await fetch('/api/hello');
-// 			let name = await r.json();
-// 			this.setState({ name });
-// 		} catch (error) {
-// 			console.log(error);
-// 		}
-// 	}
-
-// 	render() {
-// 		return (
-// 			<main className="container my-5">
-// 				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-// 			</main>
-// 		);
-// 	}
-// }
-
-// export interface IAppProps {}
-
-// export interface IAppState {
-// 	name: string;
-// }
 
 export default App;
